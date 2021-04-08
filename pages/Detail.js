@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import fetch from '../net/fetch';
 
 
 const Container = styled.SafeAreaView`
@@ -49,10 +50,13 @@ const Detail = (props) => {
   const [info, setInfo] = React.useState(null);
   React.useEffect(() =>{
     const movieCd = props.route.params.movieCd;
-    axios.get(`https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=1c9690d9f772d2a69f8089a32b59a375&movieCd=${movieCd}`)
-      .then(response => setInfo(response.data.movieInfoResult.movieInfo))
-      .catch(err => alert(err.message));
-      //console.log(info);
+    const url = `https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=1c9690d9f772d2a69f8089a32b59a375&movieCd=${movieCd}`
+    // axios.get(url)
+    //   .then(response => setInfo(response.data.movieInfoResult.movieInfo))
+    //   .catch(err => alert(err.message));
+   fetch(url)
+    .then(data => setInfo(data.movieInfoResult.movieInfo))
+    .catch(err => alert(err.message)); 
   },[]);
 
   return (

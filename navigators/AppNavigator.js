@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, View} from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import BoxOfficeNavigator from './BoxOfficeNavigator';
+import SearchNavigator from './SearchNavigator';
 
 function HomeScreen({ navigation }) {
   return (
@@ -27,7 +28,16 @@ const Drawer = createDrawerNavigator();
 const AppNavigator = (props) => {
   return (
     <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="BoxOfficeNavigator" component={BoxOfficeNavigator} />
+        <Drawer.Screen 
+          name="BoxOfficeNavigator" 
+          component={BoxOfficeNavigator} 
+          options={{drawerLabel: 'BoxOffice'}}  
+        />
+        <Drawer.Screen 
+          name="SearchNavigator" 
+          component={SearchNavigator} 
+          options={{drawerLabel: 'Search movie'}}  
+        />
         
     </Drawer.Navigator>
   )
